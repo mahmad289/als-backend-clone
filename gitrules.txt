@@ -1,0 +1,10 @@
+How git branches are working in this application?
+
+-> We have main branch which will be always be equal to production.
+-> The staging branch will be used for demo purposes it can never be behind main branch. We will merge this branch in main after all stakeholders aprove it.
+-> The development branch will be used for development purpose, developers will make their branches from it and also create PR for this branch.
+
+General rules.
+
+-> Never merge any branch directly always create PR. This is very important.
+-> Everyone will do code review

@@ -1,0 +1,402 @@
+<html lang='en' style='padding: 20px 0'>
+  <head>
+    <meta charset='utf-8' />
+    <title>Closing Summary Brief Report</title>
+  </head>
+  <body
+    style='
+      position: relative;
+      /* width: 21cm; */
+      width: 1188px;
+      margin: 0 auto;
+      color: #001028;
+      background: #ffffff;
+      font-family: Arial, sans-serif;
+      font-size: 12px;'
+  >
+    {{#each this}}
+      <div style='padding: 18px;'>
+        <div style='page-break-before: always;'>
+          <div style='padding-bottom: 16px'>
+            <table style='width: 100%; table-layout: fixed'>
+              <tbody>
+                <tr style=''>
+                  <td style='vertical-align: top' colspan='3'>
+                    <h2 style='margin: 0 0 4px'>
+                      {{client_name}}
+                    </h2>
+                  </td>
+
+                  <td style='vertical-align: top'>
+                    <img
+                      src='data:image/png;base64,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'
+                      alt='img'
+                      style='width: 100%'
+                    />
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div style='margin-bottom: 16px'>
+            <table
+              style='
+              width: 100%;
+              text-align: left;
+              font-size: 12px;
+              border-spacing: 0;
+              border: 1px solid black;
+            '
+            >
+              <thead>
+                <tr>
+                  <th style='padding: 6px 8px; border-bottom: 1px solid black'>
+                    Status as of
+                  </th>
+                  <th style='padding: 6px 8px; border-bottom: 1px solid black'>
+                    {{status_as_of}}
+                  </th>
+                  <th
+                    style='padding: 6px 8px; border-bottom: 1px solid black'
+                    colspan='5'
+                  >
+                    Exp. Date
+                  </th>
+                </tr>
+              </thead>
+              <thead>
+                <tr>
+                  <th
+                    style='
+                    padding: 6px 8px;
+                    border-bottom: 1px solid black;
+                    border-right: 1px solid black;
+                    background: lightblue;
+                  '
+                  >
+                    Project Name
+                  </th>
+                  <th
+                    style='
+                    padding: 6px 8px;
+                    border-bottom: 1px solid black;
+                    border-right: 1px solid black;
+                    background: lightblue;
+                  '
+                  >
+                    Est Closing Date
+                  </th>
+                  <th
+                    style='
+                    padding: 6px 8px;
+                    border-bottom: 1px solid black;
+                    border-right: 1px solid black;
+                    background: lightblue;
+                  '
+                  >
+                    Material Documents
+                  </th>
+                  <th
+                    style='
+                    padding: 6px 8px;
+                    border-bottom: 1px solid black;
+                    border-right: 1px solid black;
+                    background: lightblue;
+                  '
+                  ></th>
+                  <th
+                    style='
+                    padding: 6px 8px;
+                    border-bottom: 1px solid black;
+                    border-right: 1px solid black;
+                    background: lightblue;
+                  '
+                  >
+                    Certificates and Supporting Info
+                  </th>
+                  <th
+                    style='
+                    padding: 6px 8px;
+                    border-bottom: 1px solid black;
+                    border-right: 1px solid black;
+                    background: lightblue;
+                  '
+                  ></th>
+                  <th
+                    style='
+                    padding: 6px 8px;
+                    border-bottom: 1px solid black;
+                    background: lightblue;
+                  '
+                  >
+                    Current Status - Comments
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td
+                    style='
+                    vertical-align: top;
+                    padding: 0;
+                    border-right: 1px solid black;
+                  '
+                  >
+                    <div
+                      style='
+                      font-weight: bold;
+                      padding: 6px 8px;
+                      background: yellow;
+                      border-bottom: 1px solid black;
+                    '
+                    >
+                      {{project_details.name}}
+                    </div>
+                    <div style='margin-top: 30px'>
+                      <div style='padding: 6px 8px; margin-bottom: 2px'>
+                        <div style='font-weight: bold; margin-bottom: 4px'>
+                          <span
+                            style='text-decoration: underline'
+                          >Investor</span>
+                        </div>
+                        {{project_details.investor}}
+                      </div>
+                      <div style='padding: 6px 8px; margin-bottom: 2px'>
+                        <div style='font-weight: bold; margin-bottom: 4px'>
+                          <span style='text-decoration: underline'>HHC Engineer</span>
+                        </div>
+                        {{project_details.hhc_engineer}}
+                      </div>
+                      <div style='padding: 6px 8px; margin-bottom: 2px'>
+                        <div style='font-weight: bold; margin-bottom: 4px'>
+                          <span style='text-decoration: underline'>ALS Analyst</span>
+                        </div>
+                        {{project_details.als_analyst}}
+                      </div>
+                      <div style='padding: 6px 8px; margin-bottom: 2px'>
+                        <div style='font-weight: bold; margin-bottom: 4px'>
+                          <span style='text-decoration: underline'>General
+                            Partner</span>
+                        </div>
+                        {{project_details.general_partner}}
+                      </div>
+                      <div style='padding: 6px 8px; margin-bottom: 2px'>
+                        <div style='font-weight: bold; margin-bottom: 4px'>
+                          <span style='text-decoration: underline'>General
+                            Contractor</span>
+                        </div>
+                        {{project_details.general_contractor}}
+                      </div>
+                      {{! <div style="padding: 6px 8px; margin-bottom: 2px">
+                      <div style="font-weight: bold; margin-bottom: 4px">
+                        <span style="text-decoration: underline">Investor</span>
+                      </div>
+                      Lettire Construction Corp
+                    </div> }}
+                    </div>
+                  </td>
+                  <td
+                    style='
+                    vertical-align: top;
+                    padding: 0;
+                    border-right: 1px solid black;
+                  '
+                  >
+                    <div
+                      style='padding: 6px 8px; border-bottom: 1px solid black'
+                    >
+                      {{project_details.closing_date}}
+                    </div>
+                  </td>
+                  <td
+                    style='
+                    vertical-align: top;
+                    padding: 0;
+                    border-right: 1px solid black;
+                  '
+                  >
+                    {{#each material_documents}}
+                      <div
+                        style='
+                        font-weight: bold;
+                        padding: 6px 8px;
+                        height: 28px;
+                        border-bottom: 1px solid black;
+                      '
+                      >
+                        {{this.name}}:
+                      </div>
+                    {{/each}}
+                  </td>
+                  <td
+                    style='
+                    vertical-align: top;
+                    width: 57px;
+                    padding: 0;
+                    border-right: 1px solid black;
+                  '
+                  >
+                    {{#each material_documents}}
+                      {{#ifEquals this.status 'G'}}
+                        <div
+                          style='
+                        background: green;
+                        padding: 6px 8px;
+                        height: 28px;
+                        border-bottom: 1px solid black;
+                      '
+                        ></div>
+                      {{/ifEquals}}
+                      {{#ifEquals this.status 'Y'}}
+                        <div
+                          style='
+                        background: yellow;
+                        padding: 6px 8px;
+                        height: 28px;
+                        border-bottom: 1px solid black;
+                      '
+                        ></div>
+                      {{/ifEquals}}
+                      {{#ifEquals this.status 'R'}}
+                        <div
+                          style='
+                        background: red;
+                        padding: 6px 8px;
+                        height: 28px;
+                        border-bottom: 1px solid black;
+                      '
+                        ></div>
+                      {{/ifEquals}}
+                    {{/each}}
+                  </td>
+                  <td
+                    style='
+                    vertical-align: top;
+                    padding: 0;
+                    border-right: 1px solid black;
+                  '
+                  >
+                    {{#each certificates_and_supporting}}
+                      <div
+                        style='
+                        font-weight: bold;
+                        padding: 6px 8px;
+                        height: 28px;
+                        border-bottom: 1px solid black;
+                      '
+                      >
+                        {{this.name}}
+                      </div>
+                    {{/each}}
+                  </td>
+                  <td
+                    style='
+                    vertical-align: top;
+                    width: 57px;
+                    padding: 0;
+                    border-right: 1px solid black;
+                  '
+                  >
+                    {{#each certificates_and_supporting}}
+                      {{#ifEquals this.status 'G'}}
+                        <div
+                          style='
+                        background: green;
+                        padding: 6px 8px;
+                        height: 28px;
+                        border-bottom: 1px solid black;
+                      '
+                        ></div>
+                      {{/ifEquals}}
+                      {{#ifEquals this.status 'Y'}}
+                        <div
+                          style='
+                        background: yellow;
+                        padding: 6px 8px;
+                        height: 28px;
+                        border-bottom: 1px solid black;
+                      '
+                        ></div>
+                      {{/ifEquals}}
+                      {{#ifEquals this.status 'R'}}
+                        <div
+                          style='
+                        background: red;
+                        padding: 6px 8px;
+                        height: 28px;
+                        border-bottom: 1px solid black;
+                      '
+                        ></div>
+                      {{/ifEquals}}
+                    {{/each}}
+
+                  </td>
+                  <td style='width: 260px; padding: 0'>
+                    <div style='padding: 6px 8px'>
+                      {{#each comments}}
+                        <br />{{this}}
+                      {{/each}}
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div style='margin-bottom: 8px'>
+            <table
+              style='
+              width: 100%;
+              font-size: 12px;
+              text-align: left;
+              border-spacing: 0;
+            '
+            >
+              <tbody>
+                <tr>
+                  <td>
+                    <div style='font-weight: bold'>
+                      Rehab or New Construction:
+                      {{project_details.rehab_or_new_const}}
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div style='margin-bottom: 16px'>
+            <table
+              style='
+              width: 100%;
+              font-size: 12px;
+              text-align: left;
+              border-spacing: 0;
+            '
+            >
+              <tbody>
+                <tr>
+                  <td>
+                    <span style='font-weight: bold; margin-right: 8px'>Hard
+                      Costs $:</span>{{project_details.hard_cost}}
+                  </td>
+                  <td>
+                    <span style='font-weight: bold; margin-right: 8px'>Soft
+                      Costs $:</span>{{project_details.soft_cost}}
+                  </td>
+                  <td>
+                    <span style='font-weight: bold; margin-right: 8px'>Building
+                      RCV:</span>{{project_details.bldg_rcv}}
+                  </td>
+                  <td>
+                    <span style='font-weight: bold; margin-right: 8px'>Loss
+                      Rents (12-mo):</span>{{project_details.loss_rents_12mo}}
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    {{/each}}
+  </body>
+</html>

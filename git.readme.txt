@@ -1,0 +1,3 @@
+- development branch is what we have on preview
+- uat branch is what we have on uat
+- when doing hot-fix for uat please make sure to create new branch from uat

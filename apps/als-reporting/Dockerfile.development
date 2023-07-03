@@ -1,0 +1,32 @@
+FROM node:18-alpine AS development
+WORKDIR /usr/src/app
+
+# Install dependencies
+RUN apk update && apk add --no-cache \
+    g++ \
+    chromium \
+    chromium-chromedriver
+
+# Set Puppeteer environment variables
+ENV PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium-browser
+
+COPY ./package*.json ./
+RUN yarn install
+COPY ./.eslintrc.js ./.eslintrc.js
+COPY ./.prettierrc ./.prettierrc
+COPY ./tsconfig.build.json ./tsconfig.build.json
+COPY ./tsconfig.json ./tsconfig.json
+COPY ./nest-cli.json ./nest-cli.json
+COPY ./libs ./libs
+COPY ./apps/als-reporting ./apps/als-reporting
+
+# For installing chromium 
+COPY ./runner.sh ./runner.sh 
+RUN chmod +x ./runner.sh
+RUN ./runner.sh
+
+# Copy templates folder into the dist folder
+COPY ./templates /usr/src/app/dist/apps/als-reporting/templates/
+
+EXPOSE 3002
+CMD ["yarn","run","start:dev","als-reporting"]

@@ -1,0 +1,113 @@
+version: '3.8'
+services:
+  mongodb:
+    container_name: als-db
+    image: mongo:4.0.10
+    ports:
+      - 27017:27017
+    volumes:
+      - als-db:/data/db
+
+  # rabbitmq:
+  #   image: rabbitmq:3-management
+  #   container_name: rabbitmq
+  #   hostname: rabbitmq
+  #   volumes:
+  #     - /var/lib/rabbitmq
+  #   environment:
+  #     - RABBITMQ_USER=admin
+  #     - RABBITMQ_PASSWORD=admin
+  #   ports:
+  #     - "5672:5672"
+  #     - "15672:15672"
+
+  redis:
+    image: redis:alpine
+    ports:
+      - 6379:6379
+    volumes:
+      - redis-data:/data
+
+  als-hq:
+    container_name: als-hq
+    build:
+      context: .
+      dockerfile: ./apps/als-hq/Dockerfile.development
+    ports:
+      - 3001:3001 # set according to your project setup
+    volumes:
+      - ./apps/als-hq:/usr/src/app/apps/als-hq
+      - ./libs:/usr/src/app/libs
+      - ./uploads:/usr/src/app/uploads
+      - ./templates:/usr/src/app/dist/apps/als-reporting/templates
+
+    depends_on:
+      - mongodb
+      - redis
+    environment:
+      DB_URL: mongodb://mongodb:27017/als
+      NODE_ENV: dev
+    env_file: ./apps/als-hq/.env
+
+  als-reporting:
+    container_name: als-reporting
+    build:
+      context: .
+      dockerfile: ./apps/als-reporting/Dockerfile.development
+    ports:
+      - 3002:3002 # set according to your project setup
+    volumes:
+      - ./apps/als-reporting:/usr/src/app/apps/als-reporting
+      - ./libs:/usr/src/app/libs
+      - ./uploads:/usr/src/app/uploads
+      - ./templates:/usr/src/app/dist/apps/als-reporting/templates
+
+    depends_on:
+      - mongodb
+    environment:
+      DB_URL: mongodb://mongodb:27017/als
+      NODE_ENV: dev
+
+  als-vendor:
+    container_name: als-vendor
+    build:
+      context: .
+      dockerfile: ./apps/als-vendor/Dockerfile.development
+    ports:
+      - 3003:3003 # set according to your project setup
+      - 3005:3005 #Web Sockets
+    volumes:
+      - ./apps/als-vendor:/usr/src/app/apps/als-vendor
+      - ./libs:/usr/src/app/libs
+      - ./uploads:/usr/src/app/uploads
+
+    depends_on:
+      - mongodb
+    environment:
+      DB_URL: mongodb://mongodb:27017/als
+      NODE_ENV: dev
+    env_file: ./apps/als-vendor/.env
+
+  background-worker:
+    container_name: background-worker
+    build:
+      context: .
+      dockerfile: ./apps/background-worker/Dockerfile.development
+    ports:
+      - 3004:3004 # set according to your project setup
+    volumes:
+      - ./apps/background-worker:/usr/src/app/apps/background-worker
+      - ./libs:/usr/src/app/libs
+      - ./uploads:/usr/src/app/uploads
+
+    depends_on:
+      - mongodb
+      - redis
+    environment:
+      DB_URL: mongodb://mongodb:27017/als
+      NODE_ENV: dev
+    env_file: ./apps/background-worker/.env
+
+volumes:
+  als-db:
+  redis-data:

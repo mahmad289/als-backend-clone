@@ -1,0 +1,17 @@
+FROM node:18-alpine AS development
+WORKDIR /usr/src/app
+COPY ./package*.json ./
+RUN yarn install
+COPY ./.eslintrc.js ./.eslintrc.js
+COPY ./.prettierrc ./.prettierrc
+COPY ./tsconfig.build.json ./tsconfig.build.json
+COPY ./tsconfig.json ./tsconfig.json
+COPY ./nest-cli.json ./nest-cli.json
+COPY ./libs ./libs
+COPY ./apps/als-hq ./apps/als-hq
+
+# Copy templates folder into the dist folder
+COPY ./templates /usr/src/app/dist/apps/als-hq/templates/
+
+EXPOSE 3001
+CMD ["yarn","run","start:dev","als-hq"]

@@ -1,0 +1,103 @@
+{
+  "$schema": "https://json.schemastore.org/nest-cli",
+  "collection": "@nestjs/schematics",
+  "sourceRoot": "apps/als-hq/src",
+  "monorepo": true,
+  "root": "apps/als-hq",
+  "compilerOptions": {
+    "webpack": true,
+    "tsConfigPath": "apps/als-hq/tsconfig.app.json"
+  },
+  "projects": {
+    "als-hq": {
+      "type": "application",
+      "root": "apps/als-hq",
+      "entryFile": "main",
+      "sourceRoot": "apps/als-hq/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/als-hq/tsconfig.app.json"
+      }
+    },
+    "als-vendor": {
+      "type": "application",
+      "root": "apps/als-vendor",
+      "entryFile": "main",
+      "sourceRoot": "apps/als-vendor/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/als-vendor/tsconfig.app.json"
+      }
+    },
+    "als-reporting": {
+      "type": "application",
+      "root": "apps/als-reporting",
+      "entryFile": "main",
+      "sourceRoot": "apps/als-reporting/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/als-reporting/tsconfig.app.json"
+      }
+    },
+    "background-worker": {
+      "type": "application",
+      "root": "apps/background-worker",
+      "entryFile": "main",
+      "sourceRoot": "apps/background-worker/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/background-worker/tsconfig.app.json"
+      }
+    },
+    "installer": {
+      "type": "application",
+      "root": "apps/installer",
+      "entryFile": "main",
+      "sourceRoot": "apps/installer/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/installer/tsconfig.app.json"
+      }
+    },
+    "seeder": {
+      "type": "application",
+      "root": "apps/seeder",
+      "entryFile": "main",
+      "sourceRoot": "apps/seeder/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/seeder/tsconfig.app.json"
+      }
+    },
+    "auth-manager": {
+      "type": "library",
+      "root": "libs/auth-manager",
+      "entryFile": "index",
+      "sourceRoot": "libs/auth-manager/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/auth-manager/tsconfig.lib.json"
+      }
+    },
+    "building-block": {
+      "type": "library",
+      "root": "libs/building-block",
+      "entryFile": "index",
+      "sourceRoot": "libs/building-block",
+      "compilerOptions": {
+        "tsConfigPath": "libs/building-block/tsconfig.lib.json"
+      }
+    },
+    "manager": {
+      "type": "library",
+      "root": "libs/manager",
+      "entryFile": "index",
+      "sourceRoot": "libs/manager/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/manager/tsconfig.lib.json"
+      }
+    },
+    "reports": {
+      "type": "library",
+      "root": "libs/reports",
+      "entryFile": "index",
+      "sourceRoot": "libs/reports/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/reports/tsconfig.lib.json"
+      }
+    }
+  }
+}

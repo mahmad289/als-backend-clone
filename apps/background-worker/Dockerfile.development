@@ -1,0 +1,14 @@
+FROM node:18-alpine AS development
+WORKDIR /usr/src/app
+COPY ./package*.json ./
+RUN yarn install
+COPY ./.eslintrc.js ./.eslintrc.js
+COPY ./.prettierrc ./.prettierrc
+COPY ./tsconfig.build.json ./tsconfig.build.json
+COPY ./tsconfig.json ./tsconfig.json
+COPY ./nest-cli.json ./nest-cli.json
+COPY ./libs ./libs
+COPY ./apps/background-worker ./apps/background-worker
+
+EXPOSE 3004
+CMD ["yarn","run","start:dev","background-worker"]
